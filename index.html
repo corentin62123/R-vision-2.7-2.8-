@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Révisions IFSI - UE 2.8</title>
+    <meta name="description" content="Quiz interactif pour réviser l'UE 2.8 (Processus Obstructifs) en soins infirmiers.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob organic-1"></div>
+        <div class="blob organic-2"></div>
+    </div>
+    
+    <div class="app-container">
+        <header>
+            <div class="header-info">
+                <h1>UE 2.8 - Processus Obstructifs</h1>
+                <p class="subtitle">Quiz de révision infirmier</p>
+            </div>
+            <div class="header-right" style="display: flex; align-items: center; gap: 1rem;">
+                <button id="home-btn" class="theme-toggle-btn hidden" aria-label="Retour Accueil" title="Retour à l'accueil">🏠</button>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer le thème" title="Changer de thème">🌙</button>
+                <div class="score-container">
+                    <div class="score-circle" id="score-indicator">
+                        <span id="score-text">0</span>
+                        <span class="pts">XP</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- LANDING PAGE (Catégories d'UE) -->
+            <div class="card glass" id="landing-section">
+                <h2>Révisez vos UEs efficacement</h2>
+                <p class="home-desc">Choisissez l'Unité d'Enseignement à réviser.</p>
+                
+                <button id="resume-quiz-btn" class="primary-btn hidden" style="background: linear-gradient(135deg, #4CAF50, #2E7D32); margin-bottom: 2rem; width: 100%;">▶️ Reprendre le quiz en cours</button>
+
+                <div class="options-grid home-options">
+                    <button class="primary-btn ue-btn" data-ue="2.8" style="padding: 2rem; font-size: 1.4rem;">📚 UE 2.8<br><span style="font-size: 1rem; font-weight: 400;">Processus Obstructifs / Cardio</span></button>
+                    <button class="primary-btn ue-btn" data-ue="2.7" style="padding: 2rem; font-size: 1.4rem;">🧠 UE 2.7<br><span style="font-size: 1rem; font-weight: 400;">Défaillances Organiques</span></button>
+                </div>
+            </div>
+
+            <!-- THEMES SECTION -->
+            <div class="card glass hidden" id="themes-section">
+                <button id="back-to-landing-btn" class="back-btn"><span class="back-icon">🔙</span> Retour aux UEs</button>
+                <h2 id="themes-title">Choisis un thème</h2>
+                
+                <div id="themes-list-2-8" class="options-grid home-options hidden">
+                    <button class="primary-btn home-btn" data-topic="all">Mix Complet (UE 2.8 & Cardio)</button>
+                    <button class="primary-btn home-btn" data-topic="respiratoire">Processus Respiratoires (BPCO, Asthme...)</button>
+                    <button class="primary-btn home-btn" data-topic="digestif">Processus Digestifs</button>
+                    <button class="primary-btn home-btn" data-topic="uro">Pathologies Obstructives Urinaires</button>
+                    <button class="primary-btn home-btn" data-topic="cardio">Cardio-Vasculaire (SCA, MTEV...)</button>
+                    <button class="primary-btn home-btn" data-topic="ecg">Lecture ECG</button>
+                </div>
+
+                <div id="themes-list-2-7" class="options-grid home-options hidden">
+                    <button class="primary-btn home-btn" data-topic="all-2-7">Mix Complet (Toutes les questions UE 2.7)</button>
+                    <button class="primary-btn home-btn" data-topic="endocrino">Endocrinologie (Diabète, Thyroïde...)</button>
+                    <button class="primary-btn home-btn" data-topic="neuro-deg">Neurologie (Alzheimer, Parkinson, SEP...)</button>
+                    <button class="primary-btn home-btn" data-topic="ophtalmo">Ophtalmologie (Cataracte, Glaucome...)</button>
+                    <button class="primary-btn home-btn" data-topic="rhumato">Rhumatologie (Arthrose, Ostéoporose...)</button>
+                    <button class="primary-btn home-btn" data-topic="irc">Insuffisance Rénale Chronique</button>
+                </div>
+            </div>
+
+            <!-- SECTION QUIZ -->
+            <div id="quiz-section" class="hidden">
+                <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="progress-text">Question <span id="current-q">1</span> / <span id="total-q">5</span></div>
+
+            <div class="card glass" id="question-card">
+                <h2 id="question-text">Chargement de la question...</h2>
+                <div class="options-grid" id="options-container">
+                    <!-- Options injectées par JS -->
+                </div>
+                
+                <!-- ENCART D'EXPLICATION (Caché par défaut) -->
+                <div id="explanation-box" class="explanation-box hidden">
+                    <h3>💡 Explication</h3>
+                    <p id="explanation-text"></p>
+                    <button id="next-question-btn" class="primary-btn mt-4">Question Suivante</button>
+                </div>
+            </div>
+
+            <div class="card glass hidden" id="result-card">
+                <h2>Quiz Terminé ! 🌸</h2>
+                <p class="result-msg">Votre score final :</p>
+                <div class="final-score" id="final-score">0 / 50</div>
+                <p id="feedback-msg" class="feedback"></p>
+                <button class="btn primary-btn" id="restart-btn">Menu Principal</button>
+            </div>
+            
+            </div> <!-- End of quiz-section -->
+        </main>
+        
+        <footer class="app-footer">
+            <p>développé by Coco pour Cloclo 💖</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
